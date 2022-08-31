@@ -1,48 +1,25 @@
 doctype html
 
 block variables
-include ./modules.pug
 
-include /shared/components/header/index.pug
-include /shared/components/image/index.pug
-include /shared/components/loading/index.pug
-include /shared/components/icon/index.pug
-include /shared/components/link-to/index.pug
+include ./mixins.pug
 
 html
 
 	head
 
-		title Boilerplate | #{route.title}
+		title Boilerplate | #{route.page}
 
 		meta( charset="utf-8" )
 		meta( name="viewport" content="width=device-width, initial-scale=1" )
 		meta( name="theme-color" content="#fafafa" )
 
-		link( rel="icon" href=require('assets/images/logo.png').default )
+		link( rel="icon" href="" )
 
-		+preconnect([
-			'https://www.google-analytics.com',
-			'https://ajax.googleapis.com',
-			'https://fonts.googleapis.com',
-			'https://fonts.gstatic.com'
-		])
-
-		+prevent-alert()
-		+style()
 		+js()
-		+fonts()
 
 		block head
 
 	body
 
-		+loading().main-loading
-
-		div.site( data-component=`application ${page}` )
-			+header()
-			div.site-content
-				block content
-
-		+third-party()
-		+svg-sprite()
+		block content

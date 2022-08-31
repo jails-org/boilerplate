@@ -1,10 +1,10 @@
 {
   "name": "static-boilerplate",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A simple yet powerful boilerplate for static sites",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development ENV=dev webpack-dev-server --port 3000 --host 0.0.0.0",
+    "dev": "NODE_ENV=development ENV=dev webpack-dev-server --port 3000 --host 0.0.0.0",
     "build": "NODE_ENV=production webpack",
     "test": "jest",
     "typecheck": "tsc --allowJs --checkJs --noEmit --skipLibCheck ./src/**/*.js"
@@ -13,45 +13,13 @@
   "dependencies": {
     "axios": "^0.24.0",
     "bootswatch": "^4.5.0",
-    "jails-js": "5.0.0-beta.7",
+    "jails-js": "5.0.0-beta.21",
     "jails.packages5": "jails-org/packages5",
     "typescript": "^4.5.4",
     "vanilla-lazyload": "^17.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.16.4",
-    "@babel/register": "^7.16.0",
-    "babel-loader": "^8.2.3",
-    "copy-webpack-plugin": "^6.1.1",
-    "core-js": "^3.19.1",
-    "css-loader": "^4.3.0",
-    "css-minimizer-webpack-plugin": "^3.1.4",
-    "eslint": "^7.10.0",
-    "eslint-plugin-import": "^2.25.3",
-    "file-loader": "^6.2.0",
-    "html-critical-webpack-plugin": "^2.1.0",
-    "html-loader": "^3.0.1",
-    "html-webpack-plugin": "^5.5.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "jest": "^27.3.1",
-    "jquery": "^3.6.0",
-    "mini-css-extract-plugin": "^2.4.5",
-    "mustache": "^4.0.1",
-    "pug": "^3.0.2",
-    "pug-loader": "^2.4.0",
-    "rupture": "^0.7.1",
-    "style-loader": "^3.3.1",
-    "stylus": "^0.55.0",
-    "stylus-loader": "^6.2.0",
-    "svg-spritemap-webpack-plugin": "^4.4.0",
-    "terser-webpack-plugin": "^5.2.5",
-    "webpack": "^5.64.2",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.5.0"
+    "boilerplate-core": "../Boilerplate-core",
+    "webpack-cli": "^4.10.0"
   }
 }

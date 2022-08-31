@@ -1,0 +1,11 @@
+mixin js()
+	script(type="text/javascript").
+		var Page = !{JSON.stringify(route)};
+	script(type="text/javascript" src=`${site.assetsFolder}js/main.js?v=${site.hash}` defer)
+
+mixin log( variable )
+	if environment != 'production'
+		script.
+			console.groupCollapsed('PUG LOGGING')
+			console.log(!{JSON.stringify(variable	)})
+			console.groupEnd()

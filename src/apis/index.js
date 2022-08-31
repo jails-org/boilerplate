@@ -1,10 +1,14 @@
-import axios from 'axios'
+const axios = require('axios')
 
-export default async () => {
+module.exports = () => {
 
-	const { data: users } = await axios.get('https://jsonplaceholder.typicode.com/users')
+	const users = axios.get('https://jsonplaceholder.typicode.com/users')
 
-	return {
-		users
+	return Promise.all([ users ])
+		.then( ([ users ]) => ({
+			users: users.data
+		}))
+		.catch( err => {
+			console.log( chalk.bold.red('❌  [ API ERROR ]'), '===>', chalk.bgRed.bold.white(` ${err.message} `) )
+		})
 	}
-}

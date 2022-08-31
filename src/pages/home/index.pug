@@ -1,18 +1,10 @@
 extends /layouts/default.pug
-
 include ./components/hello-world/index.pug
-//- include /node_modules/...
-
-block variables
-	//- Variables defined here will be available on layout.pug
 
 block head
-	//- Add more head elements as you will
-	+log({ API, route })
+	link( rel="stylesheet" href="css/home.css")
+	script( type="text/javascript" src="js/home.js")
 
 block content
-	- const quote = Boilerplate.getData('shared/data/quote.json')
-
-	+hello-world()
-		blockquote #{quote.davinci.blockquote}
-			cite.d-block ( #{quote.davinci.cite} )
+	+log( metadata )
+	+hello-world

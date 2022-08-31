@@ -1,11 +1,8 @@
 {
 	"compilerOptions": {
-	  "baseUrl": "./src",
-	  "outDir": "./dist/",
-	  "target": "es5",
-	  "allowJs": true
-	},
-	"exclude": [
-        "./node_modules"
-	]
+	  "module":"CommonJS",                                /* Specify what module code is generated. */
+	  "moduleResolution": "node",
+	  "allowJs": true,
+	  "esModuleInterop": true
+	}
 }

@@ -1,9 +1,0 @@
-
-mixin link-to( page, property )
-
-	- const currentRoute = Boilerplate.getRoute(page)
-	- const active = route.page == page? 'active' : ''
-	- const text = property? currentRoute[property]: null
-
-	a( href=currentRoute.path class=active )&attributes(attributes)=text
-		block

@@ -1,7 +1,0 @@
-
-mixin webcomponent( name, props = {} )
-
-	- const template = Boilerplate.fs.readFileSync(`./src/webcomponents/${name}/template.html`, 'utf-8')
-	- const html = Boilerplate.mustache.render(template, props)
-
-	div.webcomponent!= html
