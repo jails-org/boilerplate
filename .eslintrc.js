@@ -23,7 +23,7 @@ module.exports = {
 		}
 	},
 	'globals':{
-		'APPCONFIG': true,
+		'ENVCONFIG': true,
 		'expect': true
 	}
 }
