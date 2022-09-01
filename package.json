@@ -1,6 +1,6 @@
 {
   "name": "static-boilerplate",
-  "version": "3.0.0",
+  "version": "5.0.0",
   "description": "A simple yet powerful boilerplate for static sites",
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
     "vanilla-lazyload": "^17.5.0"
   },
   "devDependencies": {
-    "boilerplate-core": "../Boilerplate-core",
+    "boilerplate-packages": "./packages",
     "webpack-cli": "^4.10.0"
   }
 }

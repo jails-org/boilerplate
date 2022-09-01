@@ -1,7 +1,8 @@
-import config from 'boilerplate-core/config'
+
 import path from 'path'
 import glob from 'glob'
 
+import core from './core'
 import apis	 from './src/apis'
 import routes from './src/routes'
 
@@ -15,7 +16,7 @@ export default Promise.resolve()
 	.then(( api ) => {
 
 		return {
-			...config({
+			...core({
 				source,
 				dirname,
 				version: '1.0',
