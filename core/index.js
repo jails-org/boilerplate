@@ -1,20 +1,17 @@
-import path from 'path'
-import webpack from 'webpack'
+const path = require('path')
+const webpack = require('webpack')
 
 /* Plugins */
-import TerserPlugin from 'terser-webpack-plugin'
-import HtmlWebPackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
-import HtmlCriticalWebpackPlugin from 'html-critical-webpack-plugin'
-import ImageminPlugin from 'imagemin-webpack-plugin'
-import imageminMozjpeg from 'imagemin-mozjpeg'
-import SVGSpritemapPlugin from 'svg-spritemap-webpack-plugin'
+const TerserPlugin = require('terser-webpack-plugin')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin =  require('mini-css-extract-plugin')
+const CssMinimizerPlugin =  require('css-minimizer-webpack-plugin')
+const HtmlCriticalWebpackPlugin =  require('html-critical-webpack-plugin')
+const ImageminPlugin =  require('imagemin-webpack-plugin').default
+const imageminMozjpeg =  require('imagemin-mozjpeg')
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
 
-/* Env Config */
-import envconfig from  '../env.config.json'
-
-export default ({
+module.exports = ({
 
 	entry,
 	dirname,
@@ -24,7 +21,8 @@ export default ({
 	mode = 'production',
 	assetsFolder = '',
 	version = '1.0',
-	metadata = {}
+	metadata = {},
+	envconfig
 
 }) => {
 
@@ -44,7 +42,7 @@ export default ({
 			extensions: ['*', '.js', '.ts'],
 			modules: [
 				source,
-				path.resolve(dirname, './node_modules')
+				path.resolve(dirname, '../node_modules')
 			]
 		},
 
@@ -194,7 +192,7 @@ export default ({
 							loader: 'stylus-loader',
 							options: {
 								stylusOptions : {
-									paths 		: [path.resolve(dirname, 'node_modules'), path.resolve(dirname, 'src')],
+									paths 		: [path.resolve(dirname, '../', 'node_modules'), path.resolve(dirname)],
 									import		:['rupture'],
 									resolveURL	: true,
 									includeCSS	: true

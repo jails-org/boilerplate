@@ -2,13 +2,16 @@
 import path from 'path'
 import glob from 'glob'
 
-import core from './core'
-import apis	 from './src/apis'
-import routes from './src/routes'
+import core from '@boilerplate/core'
+import apis	 from './apis'
+import routes from './routes'
 
-const source = `${__dirname}/src`
+const source = `${__dirname}`
 const dirname = __dirname
 const entryFiles = glob.sync(`${source}/pages/**/*{.ts,.styl}`)
+
+/* Env Config */
+import envconfig from  './env.config.json'
 
 export default Promise.resolve()
 
@@ -23,6 +26,7 @@ export default Promise.resolve()
 				mode: 'development',
 				metadata: { api },
 				routes: routes( api ),
+				envconfig,
 
 				// Entry
 				entry: entryFiles.reduce((acc, file) => {

@@ -1,0 +1,18 @@
+{
+  "name": "@boilerplate/www",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development ENV=dev webpack-dev-server --port 3000 --host 0.0.0.0",
+    "build": "NODE_ENV=production webpack",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@boilerplate/core": "1.0.0",
+    "axios": "^0.24.0",
+    "bootswatch": "^4.5.0",
+    "jails-js": "^5.0.0",
+    "jails.packages5": "jails-org/packages5",
+    "vanilla-lazyload": "^17.5.0"
+  }
+}

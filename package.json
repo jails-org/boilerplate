@@ -1,25 +1,10 @@
 {
-  "name": "static-boilerplate",
+  "name": "boilerplate",
   "version": "5.0.0",
+  "private": true,
   "description": "A simple yet powerful boilerplate for static sites",
-  "license": "MIT",
-  "scripts": {
-    "dev": "NODE_ENV=development ENV=dev webpack-dev-server --port 3000 --host 0.0.0.0",
-    "build": "NODE_ENV=production webpack",
-    "test": "jest",
-    "typecheck": "tsc --allowJs --checkJs --noEmit --skipLibCheck ./src/**/*.js"
-  },
-  "keywords": [],
-  "dependencies": {
-    "axios": "^0.24.0",
-    "bootswatch": "^4.5.0",
-    "jails-js": "5.0.0-beta.21",
-    "jails.packages5": "jails-org/packages5",
-    "typescript": "^4.5.4",
-    "vanilla-lazyload": "^17.5.0"
-  },
-  "devDependencies": {
-    "boilerplate-packages": "./packages",
-    "webpack-cli": "^4.10.0"
-  }
+  "workspaces":[
+    "core",
+    "www"
+  ]
 }
