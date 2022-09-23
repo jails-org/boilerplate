@@ -50,13 +50,11 @@ module.exports = ({
 
 			splitChunks: {
 				chunks: 'initial',
-				name: 'main'
+				name  : 'main'
 			},
 
 			minimizer: [
-				new TerserPlugin({
-					parallel: true
-				}),
+				new TerserPlugin({ parallel: true }),
 				new CssMinimizerPlugin()
 			]
 		},
@@ -71,6 +69,26 @@ module.exports = ({
 		},
 
 		plugins: [
+			new ImageminPlugin({
+				disable: isdev,
+				test: /\.(jpe?g|png|gif|webp)$/i,
+				pngquant: {
+					quality: '95-100'
+				},
+				plugins: [
+					imageminMozjpeg({ quality: 80 })
+				]
+			}),
+			new webpack.DefinePlugin({
+				ENVCONFIG : JSON.stringify(ENVCONFIG),
+				metadata: JSON.stringify(metadata),
+				site	: JSON.stringify({
+					routes,
+					version,
+					assetsFolder: `/${assetsFolder}`,
+					hash: mode == 'production' ? generateHash() : version
+				})
+			}),
 			new SVGSpritemapPlugin([
 				`${source}/assets/icons/*.svg`,
 				`${source}/assets/icons/**/*.svg`
@@ -124,29 +142,6 @@ module.exports = ({
 					}
 				})
 			}),
-		).concat(
-			new ImageminPlugin({
-				disable: isdev,
-				test: /\.(jpe?g|png|gif|webp)$/i,
-				pngquant: {
-					quality: '95-100'
-				},
-				plugins: [
-					imageminMozjpeg({
-						quality: 80
-					})
-				]
-			}),
-			new webpack.DefinePlugin({
-				ENVCONFIG : JSON.stringify(ENVCONFIG),
-				metadata: JSON.stringify(metadata),
-				site	: JSON.stringify({
-					routes,
-					version,
-					assetsFolder: `/${assetsFolder}`,
-					hash: mode == 'production' ? generateHash() : version
-				})
-			})
 		),
 		module: {
 			rules: [
@@ -160,12 +155,7 @@ module.exports = ({
 					}
 				},
 				{
-					test: /\.js$/,
-					exclude: /node_modules/,
-					loader: 'babel-loader'
-				},
-				{
-					test: /\.ts$/,
+					test: /\.(js|ts)$/,
 					exclude: [/node_modules/],
 					loader: 'ts-loader',
 					options: {
