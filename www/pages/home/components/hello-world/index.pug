@@ -1,5 +1,16 @@
 
 mixin hello-world()
+	- const { quote, cite } = Medusa.data('sample.json')
+
 	hello-world.hello-world
-		h1 Hello World!!
-		p nice to meet you
+
+		div.hello-world__icon
+			include /assets/icons/logo.svg
+
+		h1.display-3.text-center Hello World
+		div.hello-world__quote
+			figure
+				blockquote.blockquote
+					p.mb-0=quote
+				figcaption.blockquote-footer
+					cite( title=cite )=cite

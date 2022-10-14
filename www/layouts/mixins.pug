@@ -1,11 +1,52 @@
 mixin js()
 	script(type="text/javascript").
-		var Page = !{JSON.stringify(route)};
-	script(type="text/javascript" src=`${site.assetsFolder}js/main.js?v=${site.hash}` defer)
+		var Medusa = !{JSON.stringify(Medusa.route)} ;
+	script(type="text/javascript" src=`${Medusa.assetsFolder}js/main.js?v=${Medusa.hash}` defer)
+	script(type="text/javascript" src=`js/${Medusa.page}.js?v=${Medusa.hash}` defer)
+
+mixin css()
+	link( rel="stylesheet" href=`css/${Medusa.page}.css?v=${Medusa.hash}` )
 
 mixin log( variable )
-	if environment != 'production'
+	if Medusa.environment != 'production'
 		script.
 			console.groupCollapsed('PUG LOGGING')
 			console.log(!{JSON.stringify(variable	)})
 			console.groupEnd()
+
+mixin svg-sprite()
+	script(type="text/javascript").
+		!(function(){
+			var request = new XMLHttpRequest();
+			request.onload = function(e) {
+				var wrapper = document.createElement('div');
+				wrapper.id = 'svg-sprite';
+				wrapper.innerHTML = request.responseText;
+				wrapper.style.display = 'none';
+				document.body.insertBefore(wrapper, document.body.childNodes[0]);
+			};
+			request.open("GET", '#{Medusa.assetsFolder}icons/sprite.svg?v=#{Medusa.hash}', true);
+			request.send();
+		})();
+
+mixin image( url, alt, lazyload = true )
+
+	- const isExternal = /http|\/\//.test(url)
+	- const src = isExternal ? url : require(`assets/images/${url}`).default
+
+	if lazyload
+		img.image.lazyload( data-src=src alt=alt data-static )&attributes(attributes)
+	else
+		img.image( src=src alt=alt data-static )&attributes(attributes)
+
+mixin link-to( page, text = 'text to link-to' )
+
+	- const currentRoute = Medusa.routes.find( route => route.page == page )
+	- const active = currentRoute.page == page? 'active' : ''
+
+	a( href=currentRoute.path class=active )&attributes(attributes)=text
+		block
+
+mixin icon( name )
+	svg
+		use( xlink:href=`#${name}` )

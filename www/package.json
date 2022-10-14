@@ -11,7 +11,7 @@
     "@boilerplate/core": "1.0.0",
     "axios": "^0.24.0",
     "bootswatch": "^4.5.0",
-    "jails-js": "^5.0.0",
+    "jails-js": "^5.0.4",
     "jails.packages5": "jails-org/packages5",
     "vanilla-lazyload": "^17.5.0"
   }

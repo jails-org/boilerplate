@@ -1,6 +1,7 @@
 doctype html
 
 block variables
+	- const { title } = Medusa.route
 
 include ./mixins.pug
 
@@ -8,18 +9,21 @@ html
 
 	head
 
-		title Boilerplate | #{route.page}
+		title Boilerplate | #{title}
 
 		meta( charset="utf-8" )
 		meta( name="viewport" content="width=device-width, initial-scale=1" )
 		meta( name="theme-color" content="#fafafa" )
 
-		link( rel="icon" href="" )
+		link( rel="icon" href=+require('assets/icons/logo.svg') )
 
+		+css()
 		+js()
+		+svg-sprite()
 
 		block head
 
-	body
+	body.vh-100.d-flex.align-items-center.justify-content-center
 
-		block content
+		div.site#site
+			block content
