@@ -2,7 +2,7 @@ mixin js()
 	script(type="text/javascript").
 		var Medusa = !{JSON.stringify(Medusa.route)} ;
 	script(type="text/javascript" src=`${Medusa.assetsFolder}js/main.js?v=${Medusa.hash}` defer)
-	script(type="text/javascript" src=`js/${Medusa.page}.js?v=${Medusa.hash}` defer)
+	script(type="text/javascript" src=`/js/${Medusa.page}.js?v=${Medusa.hash}` defer)
 
 mixin css()
 	link( rel="stylesheet" href=`css/${Medusa.page}.css?v=${Medusa.hash}` )
@@ -11,7 +11,7 @@ mixin log( variable )
 	if Medusa.environment != 'production'
 		script.
 			console.groupCollapsed('PUG LOGGING')
-			console.log(!{JSON.stringify(variable	)})
+			console.log(!{JSON.stringify(variable)})
 			console.groupEnd()
 
 mixin svg-sprite()

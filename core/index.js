@@ -1,15 +1,17 @@
-const path = require('path')
-const webpack = require('webpack')
-const glob = require('glob')
+const path 		 = require('path')
+const webpack 	 = require('webpack')
+const glob 		 = require('glob')
 const MedusaCore = require('./medusa')
 
 /* Plugins */
-const TerserPlugin = require('terser-webpack-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin =  require('mini-css-extract-plugin')
-const CssMinimizerPlugin =  require('css-minimizer-webpack-plugin')
-const HtmlCriticalWebpackPlugin =  require('html-critical-webpack-plugin')
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
+const TerserPlugin 				= require('terser-webpack-plugin')
+const HtmlWebPackPlugin 		= require('html-webpack-plugin')
+const CssMinimizerPlugin 		= require('css-minimizer-webpack-plugin')
+const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin')
+const SVGSpritemapPlugin 		= require('svg-spritemap-webpack-plugin')
+const MiniCssExtractPlugin 		= require('mini-css-extract-plugin')
+const imageminMozjpeg 			= require('imagemin-mozjpeg')
+const ImageminPlugin 			= require('imagemin-webpack-plugin').default
 
 module.exports = ({
 
@@ -81,6 +83,16 @@ module.exports = ({
 
 				plugins: [
 					...plugins,
+					new ImageminPlugin({
+						disable: process.env.NODE_ENV == 'development',
+						test: /\.(jpe?g|png|gif|webp)$/i,
+						pngquant: {
+							quality: '95-100'
+						},
+						plugins: [
+							imageminMozjpeg({ quality: 80 })
+						]
+					}),
 					new webpack.DefinePlugin({
 						ENVCONFIG : JSON.stringify(ENVCONFIG),
 						Medusa: JSON.stringify(Medusa)
@@ -146,6 +158,29 @@ module.exports = ({
 				module: {
 					rules: [
 						...loaders,
+						{
+							test: /\.styl$/,
+							use: [
+								MiniCssExtractPlugin.loader,
+								{
+									loader: 'css-loader'
+								},
+								{
+									loader: 'stylus-loader',
+									options: {
+										stylusOptions : {
+											paths 		: [
+												path.resolve(dirname, '../', 'node_modules'),
+												path.resolve(dirname)
+											],
+											import		:['rupture'],
+											resolveURL	: true,
+											includeCSS	: true
+										}
+									}
+								}
+							]
+						},
 						{
 							test: /\.pug$/,
 							loader: 'pug-loader',
