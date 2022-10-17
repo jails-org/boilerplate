@@ -3,7 +3,7 @@ import ImageminPlugin from 'imagemin-webpack-plugin'
 import imageminMozjpeg from 'imagemin-mozjpeg'
 
 import path from 'path'
-import core from '@boilerplate/core'
+import core from '@medusa/core'
 
 /* Env Config */
 import envconfig from  './env.config.json'
@@ -31,7 +31,9 @@ export default Promise.resolve()
 	}))
 
 
-/** @Extensions */
+/**
+ * @Extensions
+ * */
 const loaders = [
 	{
 		test: /\.styl$/,
@@ -44,7 +46,10 @@ const loaders = [
 				loader: 'stylus-loader',
 				options: {
 					stylusOptions : {
-						paths 		: [path.resolve(dirname, '../', 'node_modules'), path.resolve(dirname)],
+						paths 		: [
+							path.resolve(dirname, '../', 'node_modules'),
+							path.resolve(dirname)
+						],
 						import		:['rupture'],
 						resolveURL	: true,
 						includeCSS	: true

@@ -41,10 +41,10 @@ mixin image( url, alt, lazyload = true )
 
 mixin link-to( page, text = 'text to link-to' )
 
-	- const currentRoute = Medusa.routes.find( route => route.page == page )
-	- const active = currentRoute.page == page? 'active' : ''
+	- const route = Medusa.routes.find( route => route.page == page )
+	- const active = route.page == page? 'active' : ''
 
-	a( href=currentRoute.path class=active )&attributes(attributes)=text
+	a( href=route.path class=active )&attributes(attributes)=text
 		block
 
 mixin icon( name )

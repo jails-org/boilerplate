@@ -1,18 +1,14 @@
 const path = require('path')
+const { v4 } = require('uuid')
 
 module.exports = ({ dirname, assetsFolder, version, mode }) => {
     return {
         version,
         assetsFolder: `/${assetsFolder}`,
-        hash: mode == 'production' ? generateHash() : version,
-        data( jsonpath ) {
-            const url = path.resolve(dirname, `data/${jsonpath}`)
+        hash: mode == 'production' ? v4() : version,
+        data( filename ) {
+            const url = path.resolve(`pages/${this.page}/data/${filename}`)
             return require(url)
         }
     }
-}
-
-function generateHash(){
-	return Math.random().toString(36).substring(2, 15) +
-		Math.random().toString(36).substring(2, 15)
 }

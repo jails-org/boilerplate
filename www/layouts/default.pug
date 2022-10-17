@@ -9,13 +9,13 @@ html
 
 	head
 
-		title Boilerplate | #{title}
+		title Medusa Boilerplate | #{title}
 
 		meta( charset="utf-8" )
 		meta( name="viewport" content="width=device-width, initial-scale=1" )
 		meta( name="theme-color" content="#fafafa" )
 
-		link( rel="icon" href=+require('assets/icons/logo.svg') )
+		link( rel="icon" href=require('assets/icons/logo.svg').default )
 
 		+css()
 		+js()

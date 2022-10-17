@@ -1,5 +1,5 @@
 {
-  "name": "@boilerplate/www",
+  "name": "@medusa/www",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@boilerplate/core": "1.0.0",
+    "@medusa/core": "1.0.0",
     "axios": "^0.24.0",
     "bootswatch": "^4.5.0",
     "jails-js": "^5.0.4",
