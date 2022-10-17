@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env mode=development --port 3000 --host 0.0.0.0 --config ./config/webpack.config.ts",
-    "build": "ENV=production webpack --config --env mode=production ./config/webpack.config.ts",
+    "build": "ENV=production webpack --env mode=production --config ./config/webpack.config.ts",
     "test": "jest"
   },
   "dependencies": {

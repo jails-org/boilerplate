@@ -18,7 +18,7 @@ export default async function webpackConfig( env, arg ) {
 
 	const { mode } 	 = env
 	const isdev 	 = mode === 'development'
-	const source 	 = path.resolve(__dirname, '..')
+	const source 	 = path.resolve('./')
 
 	const api 	 = await apis_()
 	const routes = await routes_(api)
