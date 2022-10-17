@@ -1,14 +1,14 @@
 mixin js()
 	script(type="text/javascript").
-		var Medusa = !{JSON.stringify(Medusa.route)} ;
-	script(type="text/javascript" src=`${Medusa.assetsFolder}js/main.js?v=${Medusa.hash}` defer)
-	script(type="text/javascript" src=`/js/${Medusa.page}.js?v=${Medusa.hash}` defer)
+		var Whitelabel = !{JSON.stringify(Whitelabel.route)} ;
+	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/main.js?v=${Whitelabel.hash}` defer)
+	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/${Whitelabel.page}.js?v=${Whitelabel.hash}` defer)
 
 mixin css()
-	link( rel="stylesheet" href=`css/${Medusa.page}.css?v=${Medusa.hash}` )
+	link( rel="stylesheet" href=`${Whitelabel.assetsPath}css/${Whitelabel.page}.css?v=${Whitelabel.hash}` )
 
 mixin log( variable )
-	if Medusa.environment != 'production'
+	if Whitelabel.environment != 'production'
 		script.
 			console.groupCollapsed('PUG LOGGING')
 			console.log(!{JSON.stringify(variable)})
@@ -25,13 +25,13 @@ mixin svg-sprite()
 				wrapper.style.display = 'none';
 				document.body.insertBefore(wrapper, document.body.childNodes[0]);
 			};
-			request.open("GET", '#{Medusa.assetsFolder}icons/sprite.svg?v=#{Medusa.hash}', true);
+			request.open("GET", '#{Whitelabel.assetsFolder}icons/sprite.svg?v=#{Whitelabel.hash}', true);
 			request.send();
 		})();
 
 mixin image( url, alt, lazyload = true )
 
-	- const isExternal = /http|\/\//.test(url)
+	- const isExternal = /http/.test(url)
 	- const src = isExternal ? url : require(`assets/images/${url}`).default
 
 	if lazyload
@@ -41,7 +41,7 @@ mixin image( url, alt, lazyload = true )
 
 mixin link-to( page, text = 'text to link-to' )
 
-	- const route = Medusa.routes.find( route => route.page == page )
+	- const route = Whitelabel.routes.find( route => route.page == page )
 	- const active = route.page == page? 'active' : ''
 
 	a( href=route.path class=active )&attributes(attributes)=text

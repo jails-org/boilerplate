@@ -23,7 +23,7 @@ module.exports = {
 		}
 	},
 	'globals':{
-		'ENVCONFIG': true,
+		'Whitelabel': true,
 		'expect': true
 	}
 }

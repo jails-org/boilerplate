@@ -1,18 +1,17 @@
 {
-  "name": "@medusa/www",
+  "name": "@whitelabel/www",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development ENV=dev webpack-dev-server --port 3000 --host 0.0.0.0",
-    "build": "NODE_ENV=production webpack",
+    "dev": "webpack-dev-server --env mode=development --port 3000 --host 0.0.0.0 --config ./config/webpack.config.ts",
+    "build": "ENV=production webpack --config --env mode=production ./config/webpack.config.ts",
     "test": "jest"
   },
   "dependencies": {
-    "@medusa/core": "1.0.0",
     "axios": "^0.24.0",
-    "bootswatch": "^4.5.0",
-    "jails-js": "^5.0.4",
-    "jails.packages5": "jails-org/packages5",
-    "vanilla-lazyload": "^17.5.0"
+    "vanilla-lazyload": "^17.8.3"
+  },
+  "devDependencies": {
+    "@whitelabel/packages": "1.0.0"
   }
 }

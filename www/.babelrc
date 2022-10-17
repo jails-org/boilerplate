@@ -13,6 +13,7 @@
 		]
 	],
 	"plugins": [
+		"babel-plugin-transform-custom-element-classes",
 		"@babel/plugin-proposal-object-rest-spread",
 		"@babel/plugin-syntax-dynamic-import"
 	]

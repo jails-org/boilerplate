@@ -1,10 +1,10 @@
 {
-	"name": "@medusa/core",
+	"name": "@whitelabel/config",
 	"version": "1.0.0",
 	"description": "A simple yet powerful boilerplate for static sites",
 	"license": "MIT",
 	"keywords": [],
-	"dependencies": {
+	"devDependencies": {
 		"@babel/core": "^7.16.0",
 		"@babel/eslint-parser": "^7.16.3",
 		"@babel/plugin-proposal-object-rest-spread": "^7.16.0",
@@ -24,7 +24,6 @@
 		"imagemin-mozjpeg": "^9.0.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"jest": "^27.3.1",
-		"jquery": "^3.6.0",
 		"mini-css-extract-plugin": "^2.4.5",
 		"pug": "^3.0.2",
 		"pug-loader": "^2.4.0",

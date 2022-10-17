@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+	  "baseUrl": "./",
 	  "module":"CommonJS",                                /* Specify what module code is generated. */
 	  "moduleResolution": "node",
 	  "allowJs": true,

@@ -1,4 +1,5 @@
-export default ( api ) => {
+
+export default async ( api ) => {
 
 	return [
 		{

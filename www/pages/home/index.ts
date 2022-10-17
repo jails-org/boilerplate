@@ -1,5 +1,5 @@
-import jails from 'jails-js'
-import * as helloWorld from './components/hello-world'
+import main from 'shared/main'
+import HelloWorld from './components/hello-world/index.webcomponent'
 
-jails.register('hello-world', helloWorld)
-jails.start()
+customElements.define('hello-world', HelloWorld)
+main()
