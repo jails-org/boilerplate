@@ -1,6 +1,6 @@
 mixin js()
 	script(type="text/javascript").
-		var Whitelabel = !{JSON.stringify(Whitelabel.route)} ;
+		var Whitelabel = !{JSON.stringify(Whitelabel)};
 	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/main.js?v=${Whitelabel.hash}` defer)
 	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/${Whitelabel.page}.js?v=${Whitelabel.hash}` defer)
 

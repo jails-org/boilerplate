@@ -81,9 +81,6 @@ export default function plugins ({
 					blockJSRequests: false
 				}
 			})
-		}),
-		new webpack.DefinePlugin({
-			Whitelabel: JSON.stringify(Whitelabel)
 		})
     ]
 }

@@ -7,7 +7,7 @@ export default class HelloWorld extends HTMLElement {
 
 	connectedCallback(){
 		console.log('hello world mounted')
-		console.log('[Hello World] - Logging Whitelabel var', { Whitelabel })
+		console.log('[Hello World] - Logging Whitelabel', window.Whitelabel)
 	}
 
 	disconnectedCallback() {
