@@ -6,11 +6,22 @@
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
+const type = process.argv.pop()
 const files = glob.sync('./dist/*.css')
-
 const file = files.shift()
-const css = fs.readFileSync(path.resolve(file), 'utf-8')
 
-fs.writeFileSync('./index.styl', `@css{
-	${css}
-}`)
+const save = () => {
+	const css = fs.readFileSync(path.resolve(file), 'utf-8')
+	fs.writeFileSync('./index.styl', `@css{
+		${css}
+	}`)
+}
+
+save()
+
+if( type == '--dev' ) {
+	fs.watch(path.resolve('./dist'), (event, filename) => {
+		save()
+	})
+}
+

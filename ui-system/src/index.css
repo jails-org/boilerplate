@@ -4,7 +4,7 @@
 
 @layer base {
     .title-1 {
-        @apply text-5xl font-light ;
+        @apply text-5xl font-light border-collapse;
     }
 
 	.title-2 {

@@ -4,7 +4,7 @@
   "description": "The UI System for my whitelable project",
   "license": "MIT",
   "scripts":{
-    "dev": "parcel ./src/index.html",
+    "dev": "node fix-css-files.js --dev & parcel ./src/index.html",
     "build": "parcel build ./src/index.html --no-content-hash && node fix-css-files.js"
   },
   "devDependencies": {
