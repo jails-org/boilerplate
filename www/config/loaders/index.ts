@@ -4,29 +4,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 export default function loaders ({ source, assetsPath }) {
     return [
 		{
-			test: /\.styl$/,
-			use: [
-				MiniCssExtractPlugin.loader,
-				{
-					loader: 'css-loader'
-				},
-				{
-					loader: 'stylus-loader',
-					options: {
-						stylusOptions : {
-							paths 		: [
-								path.resolve(source, '../', 'node_modules'),
-								path.resolve(source)
-							],
-							import		:['rupture'],
-							resolveURL	: true,
-							includeCSS	: true
-						}
-					}
-				}
-			]
-		},
-		{
 			test: /\.pug$/,
 			loader: 'pug-loader',
 			options: {
@@ -57,12 +34,34 @@ export default function loaders ({ source, assetsPath }) {
 				}
 			]
 		},
-
 		{
 			test: /\.css$/,
 			use: {
 				loader: 'css-loader'
 			}
+		},
+		{
+			test: /\.styl$/,
+			use: [
+				MiniCssExtractPlugin.loader,
+				{
+					loader: 'css-loader'
+				},
+				{
+					loader: 'stylus-loader',
+					options: {
+						stylusOptions : {
+							paths 		: [
+								path.resolve(source, '../', 'node_modules'),
+								path.resolve(source)
+							],
+							import		:['rupture'],
+							resolveURL	: true,
+							includeCSS	: true
+						}
+					}
+				}
+			]
 		},
 		{
 			test: /\.(gif|png|jpe?g|svg|webp)$/i,

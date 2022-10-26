@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .title-1 {
+        @apply text-5xl font-light ;
+    }
+
+	.title-2 {
+		@apply text-4xl font-light;
+	}
+
+	.title-3 {
+		@apply text-2xl font-light;
+	}
+}
+
+@layer components {
+
+	.window-centered {
+		@apply flex justify-center items-center;
+	}
+
+    .button {
+        @apply p-2 px-4 bg-blue-700 text-white rounded-lg hover:opacity-80 transition-opacity;
+    }
+}

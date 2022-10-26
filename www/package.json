@@ -12,6 +12,7 @@
     "vanilla-lazyload": "^17.8.3"
   },
   "devDependencies": {
-    "@whitelabel/packages": "1.0.0"
+    "@whitelabel/packages": "1.0.0",
+	"@whitelabel/ui-system":"1.0.0"
   }
 }
