@@ -10,7 +10,7 @@ mixin css()
 mixin log( variable )
 	if Whitelabel.environment != 'production'
 		script.
-			console.groupCollapsed('PUG LOGGING')
+			console.groupCollapsed('[WHITELABEL] - Pug Logging')
 			console.log(!{JSON.stringify(variable)})
 			console.groupEnd()
 

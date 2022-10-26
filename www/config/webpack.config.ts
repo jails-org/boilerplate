@@ -14,7 +14,7 @@ export default async function webpackConfig( env, arg ) {
 
 	const assetsPath = ''
 	const ENV = process.env.ENV || 'production'
-	const ENVCONFIG  = envconfig[ ENV ]
+	const config  = envconfig[ ENV ]
 
 	const { mode } 	 = env
 	const isdev 	 = mode === 'development'
@@ -36,7 +36,7 @@ export default async function webpackConfig( env, arg ) {
 		return acc
 	}, {})
 
-	const Whitelabel = whitelabel({ ENVCONFIG, mode, routes, assetsPath, api })
+	const Whitelabel = whitelabel({ config, mode, routes, assetsPath, api })
 	const plugins 	 = pluginsList({ source, assetsPath, routes, Whitelabel, mode, output })
 	const loaders	 = loadersList({ source, assetsPath })
 

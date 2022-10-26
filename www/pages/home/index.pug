@@ -2,6 +2,8 @@ extends /layouts/default.pug
 include ./components/hello-world/index.pug
 
 block head
+	- const { route } = Whitelabel
+	+log(route)
 
 block content
 	main.home.window-centered
