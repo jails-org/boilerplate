@@ -1,27 +1,17 @@
 import path from 'path'
-import glob from 'glob'
-import whitelabel from './whitelabel'
-import apis_ from '../apis'
-import routes_ from '../routes'
-import envconfig from '../env.config.json'
-import pluginsList from './plugins'
-import loadersList from './loaders'
+import {whitelabel, getConfig} from './whitelabel'
 
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import pluginsList from './plugins'
+import loadersList from './loaders'
 
 export default async function webpackConfig( env, arg ) {
 
-	const assetsPath = ''
-	const ENV = process.env.ENV || 'production'
-	const config  = envconfig[ ENV ]
-
-	const { mode } 	 = env
-	const isdev 	 = mode === 'development'
-	const source 	 = path.resolve('./')
-
-	const api 	 = await apis_()
-	const routes = await routes_(api)
+	const { entry, config, isdev, mode, routes, assetsPath, source } = await getConfig({
+		env,
+		entries: './pages/**/*{.ts,.styl}'
+	})
 
 	const output = {
 		chunkFilename: 'js/[name].js',
@@ -30,22 +20,15 @@ export default async function webpackConfig( env, arg ) {
 		path: path.resolve(source, '../dist')
 	}
 
-	const entries = glob.sync(`./pages/**/*{.ts,.styl}`).reduce((acc, file) => {
-		const dirname = path.basename(path.dirname(file))
-		acc[dirname] = dirname in acc ? acc[dirname].concat(file) : [file]
-		return acc
-	}, {})
-
-	const Whitelabel = whitelabel({ config, mode, routes, assetsPath, api })
+	const Whitelabel = whitelabel({ config, mode, routes, assetsPath })
 	const plugins 	 = pluginsList({ source, assetsPath, routes, Whitelabel, mode, output })
 	const loaders	 = loadersList({ source, assetsPath })
 
 	return {
 		mode,
 		output,
-
-		devtool: isdev ? 'eval-source-map': false,
-		entry  : entries,
+		entry,
+		devtool: isdev ? 'source-map': false,
 
 		resolve: {
 			extensions: ['*', '.js', '.ts'],

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts":{
     "dev": "node fix-css-files.js --dev & parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --no-content-hash && node fix-css-files.js"
+    "build": "parcel build ./src/index.html --no-content-hash --no-source-maps && node fix-css-files.js"
   },
   "devDependencies": {
     "parcel": "^2.7.0",

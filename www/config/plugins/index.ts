@@ -1,4 +1,3 @@
-import webpack from 'webpack'
 import HtmlWebPackPlugin from 'html-webpack-plugin'
 import HtmlCriticalWebpackPlugin from 'html-critical-webpack-plugin'
 import SVGSpritemapPlugin from 'svg-spritemap-webpack-plugin'
@@ -51,9 +50,7 @@ export default function plugins ({
 
 			return new HtmlWebPackPlugin({
 				template: `${source}/pages/${page}/index.pug`,
-				templateParameters: {
-					Whitelabel
-				},
+				templateParameters: { Whitelabel },
 				filename: `./${file}`,
 				inject: false,
 				minify: isdev ? false : {
