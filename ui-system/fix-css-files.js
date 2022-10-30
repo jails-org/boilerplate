@@ -12,7 +12,7 @@ const file = files.shift()
 
 const save = () => {
 	const css = fs.readFileSync(path.resolve(file), 'utf-8')
-	fs.writeFileSync('./index.styl', `@css{
+	fs.writeFileSync('./bootstrap/index.styl', `@css{
 		${css}
 	}`)
 }
