@@ -1,5 +1,5 @@
 import path from 'path'
-import {whitelabel, getConfig} from './whitelabel'
+import { whitelabel, getConfig } from './whitelabel'
 
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
