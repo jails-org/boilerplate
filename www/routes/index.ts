@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { getUsers } from '../shared/services/sample'
 
 export default async () => {
 
@@ -8,10 +8,8 @@ export default async () => {
 			page: 'home',
 			path: '/',
 			async controller() {
-				const { data:users } = await axios.get('https://jsonplaceholder.typicode.com/users')
-				return {
-					users
-				}
+				const users = await getUsers()
+				return { users }
 			}
 		}
 	]
