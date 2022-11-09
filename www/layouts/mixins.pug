@@ -1,14 +1,14 @@
 mixin js()
 	script(type="text/javascript").
 		var Whitelabel = !{JSON.stringify(Whitelabel)};
-	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/main.js?v=${Whitelabel.hash}` defer)
-	script(type="text/javascript" src=`${Whitelabel.assetsPath}js/${Whitelabel.page}.js?v=${Whitelabel.hash}` defer)
+	script(type="text/javascript" src=`${Whitelabel.metadata.assetsPath}js/main.js?v=${Whitelabel.metadata.hash}` defer)
+	script(type="text/javascript" src=`${Whitelabel.metadata.assetsPath}js/${Whitelabel.props.page}.js?v=${Whitelabel.metadata.hash}` defer)
 
 mixin css()
-	link( rel="stylesheet" href=`${Whitelabel.assetsPath}css/${Whitelabel.page}.css?v=${Whitelabel.hash}` )
+	link( rel="stylesheet" href=`${Whitelabel.metadata.assetsPath}css/${Whitelabel.props.page}.css?v=${Whitelabel.metadata.hash}` )
 
 mixin log( variable )
-	if Whitelabel.environment != 'production'
+	if Whitelabel.metadata.mode != 'production'
 		script.
 			console.groupCollapsed('[WHITELABEL] - Server Logging')
 			console.log(!{JSON.stringify(variable)})
@@ -25,7 +25,7 @@ mixin svg-sprite()
 				wrapper.style.display = 'none';
 				document.body.insertBefore(wrapper, document.body.childNodes[0]);
 			};
-			request.open("GET", '#{Whitelabel.assetsFolder}icons/sprite.svg?v=#{Whitelabel.hash}', true);
+			request.open("GET", '#{Whitelabel.metadata.assetsFolder}icons/sprite.svg?v=#{Whitelabel.metadata.hash}', true);
 			request.send();
 		})();
 
@@ -41,7 +41,7 @@ mixin image( url, alt, lazyload = true )
 
 mixin link-to( page, text = 'text to link-to' )
 
-	- const route = Whitelabel.routes.find( route => route.page == page )
+	- const route = Whitelabel.props.routes.find( route => route.page == page )
 	- const active = route.page == page? 'active' : ''
 
 	a( href=route.path class=active )&attributes(attributes)=text

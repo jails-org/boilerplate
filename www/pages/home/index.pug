@@ -2,9 +2,9 @@ extends /layouts/default.pug
 include ./components/hello-world/index.pug
 
 block head
-	- const { route } = Whitelabel
+	- const { route } = Whitelabel.props
 	+log(route)
 
 block content
-	main.home.window-centered
+	main.home.d-flex.align-items-center.justify-content-center.vh-100
 		+hello-world

@@ -9,19 +9,15 @@ import glob from 'glob'
 export const whitelabel = ({ assetsPath, mode, config, routes }) => {
 
 	const version = packageJSON.version
+	const hash = mode == 'production' ? v4() : version
+	const assetsPath_ = `/${assetsPath}`
 
 	return {
-		page : '',
-		route: {},
-		mode,
-		routes,
-		version,
-        assetsPath: `/${assetsPath}`,
 		config,
-        hash: mode == 'production' ? v4() : version,
-
-        data( filename ) {
-            const url = path.resolve(`pages/${this.page}/data/${filename}`)
+		metadata: { hash, assetsPath: assetsPath_, version, mode },
+		props : { routes, route : null, page: '' },
+        getJSON( filename ) {
+            const url = path.resolve(`pages/${this.props.page}/data/${filename}`)
             return require(url)
         }
 	}

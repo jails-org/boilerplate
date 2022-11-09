@@ -45,8 +45,8 @@ export default function plugins ({
 			const { page } = route
 			const file = route.path == '/'? 'index.html' : route.path.substring(1) + '/index.html'
 
-			Whitelabel.page = page
-			Whitelabel.route = route
+			Whitelabel.props.page = page
+			Whitelabel.props.route = route
 
 			return new HtmlWebPackPlugin({
 				template: `${source}/pages/${page}/index.pug`,

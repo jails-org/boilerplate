@@ -1,17 +1,15 @@
 
 mixin hello-world()
-	- const { quote, cite } = Whitelabel.data('sample.json')
+	- const { quote, cite } = Whitelabel.getJSON('sample.json')
 
 	hello-world.hello-world
 
-		div.hello-world__icon
-			+image( 'sample/whitelabel.webp', 'WhiteLabel', false )
+		+image( 'sample/whitelabel.webp', 'WhiteLabel', false )( width="350" )
 
-		h1.title-1 Whitelabel
+		h1.display-4.text-center Whitelabel
 
-		div.hello-world__quote
-			figure
-				blockquote.blockquote
-					p.mb-0=quote
-				figcaption.blockquote-footer
-					cite( title=cite )=cite
+		figure.text-center
+			blockquote.blockquote
+				p.mb-0=quote
+			figcaption.blockquote-footer
+				cite( title=cite )=cite

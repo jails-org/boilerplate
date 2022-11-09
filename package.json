@@ -5,7 +5,6 @@
   "description": "A simple yet powerful boilerplate for static sites",
   "workspaces":[
     "packages",
-    "www",
-    "ui-system"
+    "www"
   ]
 }
