@@ -1,12 +1,16 @@
 import path from 'path'
-import { whitelabel, getConfig } from './whitelabel'
+import packageJSON from '../package.json'
+import routes_ from '../routes'
+import envconfig from '../env.config.json'
+import glob from 'glob'
+import { v4 } from 'uuid'
 
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import pluginsList from './plugins'
 import loadersList from './loaders'
 
-export default async function webpackConfig( env, arg ) {
+export default async ( env, arg ) => {
 
 	const { entry, config, isdev, mode, routes, assetsPath, source } = await getConfig({
 		env,
@@ -69,5 +73,59 @@ export default async function webpackConfig( env, arg ) {
 				...loaders
 			]
 		}
+	}
+}
+
+const getConfig = async ({  env, entries, assetsPath = '' }) => {
+
+	const ENV = process.env.ENV || 'production'
+	const config  = envconfig[ ENV ]
+
+	const { mode } 	 = env
+	const isdev 	 = mode === 'development'
+	const source 	 = path.resolve('./')
+
+	const routes = await routes_()
+
+	const entry = glob.sync(entries).reduce((acc, file) => {
+		const dirname = path.basename(path.dirname(file))
+		acc[dirname] = dirname in acc ? acc[dirname].concat(file) : [file]
+		return acc
+	}, {})
+
+	await Promise.all(routes.map( async (route:any) => {
+		const api = route.controller? route.controller() : Promise.resolve({})
+		const data = await api
+		route.data = data
+		return route
+	}))
+
+	return {
+		config,
+		mode,
+		routes,
+		assetsPath,
+		source,
+		isdev,
+		entry
+	}
+}
+
+const whitelabel = ({ assetsPath, mode, config, routes }) => {
+
+	const version = packageJSON.version
+	const hash = mode == 'production' ? v4() : version
+	const assetsPath_ = `/${assetsPath}`
+
+	return {
+
+		config,
+		metadata: { hash, assetsPath: assetsPath_, version, mode },
+		props : { routes, route :null, page: '' },
+
+		getData( filename ) {
+            const url = path.resolve(`pages/${this.props.page}/data/${filename}`)
+            return require(url)
+        }
 	}
 }

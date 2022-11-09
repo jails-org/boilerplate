@@ -1,12 +1,13 @@
 doctype html
 
 block variables
-	- const { title } = Whitelabel.props.route
+	- const { props } = Whitelabel
+	- const title = props.title
+	- const logo = require('assets/icons/logo.svg').default
 
 include ./mixins.pug
 
 html
-
 	head
 
 		title Whitelabel Boilerplate | #{title}
@@ -15,7 +16,7 @@ html
 		meta( name="viewport" content="width=device-width, initial-scale=1" )
 		meta( name="theme-color" content="#fafafa" )
 
-		link( rel="icon" href=require('assets/icons/logo.svg').default )
+		link( rel="icon" href=logo )
 
 		+css()
 		+js()
