@@ -93,13 +93,6 @@ const getConfig = async ({  env, entries, assetsPath = '' }) => {
 		return acc
 	}, {})
 
-	await Promise.all(routes.map( async (route:any) => {
-		const api = route.controller? route.controller() : Promise.resolve({})
-		const data = await api
-		route.data = data
-		return route
-	}))
-
 	return {
 		config,
 		mode,
