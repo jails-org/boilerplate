@@ -16,7 +16,7 @@ export const whitelabel = ({ assetsPath, mode, config, routes }) => {
 		config,
 		metadata: { hash, assetsPath: assetsPath_, version, mode },
 		props : { routes, route : null, page: '' },
-        getJSON( filename ) {
+        getData( filename ) {
             const url = path.resolve(`pages/${this.props.page}/data/${filename}`)
             return require(url)
         }
